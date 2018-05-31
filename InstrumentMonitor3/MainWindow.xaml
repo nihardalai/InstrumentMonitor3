@@ -1,12 +1,90 @@
-﻿<Window x:Class="InstrumentMonitor3.MainWindow"
+﻿<Window x:Class="InstrumentMonitor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:InstrumentMonitor3"
+        xmlns:local="clr-namespace:InstrumentMonitor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="600">
     <Grid>
+        <TabControl>
+            
+            <TabItem Header="Bloomberg">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.Row="0">
+                        <Button Command="{Binding StartCommand}" CommandParameter="Bloomberg" Margin="5,0">Start</Button>
+                        <Button Command="{Binding StopCommand}" CommandParameter="Bloomberg" Margin="5,0">Stop</Button>
+                        <TextBlock Foreground="Gray" Text="Cusip to subscribe/unsubscribe : " VerticalAlignment="Center" Margin="20,0,10,0"/>
+                        <TextBox Text="{Binding BloombergSelectedCusip, Mode=TwoWay}" Width="100" />
+                        <Button Command="{Binding SubscribeCommand}" CommandParameter="Bloomberg" Margin="5,0">Subscribe</Button>
+                        <Button Command="{Binding UnsubscribeCommand}" CommandParameter="Bloomberg" Margin="5,0">Unsubscribe</Button>
+                    </ToolBar>
+                    <DataGrid ItemsSource="{Binding BloombergInstruments}" AutoGenerateColumns="False" Grid.Row="1" Margin="5" AlternatingRowBackground="AliceBlue" AlternationCount="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Instrument" Binding="{Binding Cusip}" Width="100" />
+                            <DataGridTextColumn Header="Bid Price" Binding="{Binding Bid}" Width="60" />
+                            <DataGridTextColumn Header="Coupon" Binding="{Binding Coupon}" Width="60" />
+                            <DataGridTextColumn Header="Price Source" Binding="{Binding Source}" Width="80" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Tradeweb">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.Row="0">
+                        <Button Command="{Binding StartCommand}" CommandParameter="Tradeweb" Margin="5,0">Start</Button>
+                        <Button Command="{Binding StopCommand}" CommandParameter="Tradeweb" Margin="5,0">Stop</Button>
+                        <TextBlock Foreground="Gray" Text="Cusip to subscribe/unsubscribe : " VerticalAlignment="Center" Margin="20,0,10,0"/>
+                        <TextBox Text="{Binding TradewebSelectedCusip, Mode=TwoWay}" Width="100" />
+                        <Button Command="{Binding SubscribeCommand}" CommandParameter="Tradeweb" Margin="5,0">Subscribe</Button>
+                        <Button Command="{Binding UnsubscribeCommand}" CommandParameter="Tradeweb" Margin="5,0">Unsubscribe</Button>
+                    </ToolBar>
+                    <DataGrid ItemsSource="{Binding TradewebInstruments}" AutoGenerateColumns="False" Grid.Row="1" Margin="5" AlternatingRowBackground="AliceBlue" AlternationCount="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Instrument" Binding="{Binding Cusip}" Width="100" />
+                            <DataGridTextColumn Header="Bid Price" Binding="{Binding Bid}" Width="60" />
+                            <DataGridTextColumn Header="Coupon" Binding="{Binding Coupon}" Width="60" />
+                            <DataGridTextColumn Header="Price Source" Binding="{Binding Source}" Width="80" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Composite">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.Row="0">
+                        <Button Command="{Binding StartCommand}" CommandParameter="Composite" Margin="5,0">Start</Button>
+                        <Button Command="{Binding StopCommand}" CommandParameter="Composite" Margin="5,0">Stop</Button>
+                        <TextBlock Foreground="Gray" Text="Cusip to subscribe/unsubscribe : " VerticalAlignment="Center" Margin="20,0,10,0"/>
+                        <TextBox Text="{Binding CompositeSelectedCusip, Mode=TwoWay}" Width="100" />
+                        <Button Command="{Binding SubscribeCommand}" CommandParameter="Composite" Margin="5,0">Subscribe</Button>
+                        <Button Command="{Binding UnsubscribeCommand}" CommandParameter="Composite" Margin="5,0">Unsubscribe</Button>
+                    </ToolBar>
+                    <DataGrid ItemsSource="{Binding CompositeInstruments}" AutoGenerateColumns="False" Grid.Row="1" Margin="5" AlternatingRowBackground="AliceBlue" AlternationCount="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Instrument" Binding="{Binding Cusip}" Width="100" />
+                            <DataGridTextColumn Header="Bid Price" Binding="{Binding Bid}" Width="60" />
+                            <DataGridTextColumn Header="Coupon" Binding="{Binding Coupon}" Width="60" />
+                            <DataGridTextColumn Header="Price Source" Binding="{Binding Source}" Width="80" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
         
     </Grid>
 </Window>
